@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ghism — Trần Thái Hưng</title>
+<meta name="description" content="Trần Thái Hưng (ghism) — CS · Data Science & AI. RAG agents, fraud detection, graph algorithms for markets.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦆</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="vendor/katex/katex.min.css">
+<script>
+  // set theme before paint to avoid flashing
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    if (!t) t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ───────── status bar ───────── -->
+<header class="bar">
+  <div class="bar-left">
+    <span class="dots"><i></i><i></i><i></i></span>
+    <a href="#top" class="brand">ghism<span class="mute">@portfolio</span>:<span class="acc">~</span>$</a>
+  </div>
+  <nav class="bar-nav">
+    <a href="#about" data-i18n="nav.about">about</a>
+    <a href="#projects" data-i18n="nav.projects">projects</a>
+    <a href="#skills" data-i18n="nav.skills">skills</a>
+    <a href="#log" data-i18n="nav.log">achievements</a>
+    <a href="#contact" data-i18n="nav.contact">contact</a>
+  </nav>
+  <div class="bar-right">
+    <span class="clock mute" id="clock">--:--:-- ICT</span>
+    <button class="chip" id="langBtn" aria-label="Switch language">VI</button>
+    <button class="chip" id="themeBtn" aria-label="Toggle theme"><span class="sun">☀</span><span class="moon">☾</span></button>
+  </div>
+</header>
+
+<!-- ───────── ticker tape ───────── -->
+<div class="tape" aria-hidden="true">
+  <div class="tape-track" id="tape"></div>
+</div>
+
+<main id="top">
+
+<!-- ───────── hero ───────── -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="prompt"><span class="mute">$</span> <span class="acc">whoami</span></p>
+    <h1>Trần Thái Hưng <span class="amb">(ghism)</span></h1>
+    <p class="major">CS · Data Science &amp; AI</p>
+    <p class="typed"><span class="mute">&gt;</span> <span id="typed"></span><span class="cursor">▌</span></p>
+    <p class="lead" data-i18n="hero.lead">I build things where math meets messy data: retrieval agents that cite the law, fraud models that care about dollars, and graph algorithms that read the stock market.</p>
+    <div class="cta">
+      <a class="btn primary" href="#projects" data-i18n="hero.cta1">./view_projects</a>
+      <a class="btn" href="https://github.com/ghism137" target="_blank" rel="noopener">github ↗</a>
+      <a class="btn" href="#contact" data-i18n="hero.cta3">./contact</a>
+    </div>
+  </div>
+
+  <figure class="hero-graph panel">
+    <div class="panel-head">
+      <span>MST.live</span>
+      <span class="mute" id="mstStat">n=0 · Σw=0.00</span>
+    </div>
+    <canvas id="mst" aria-label="Animated minimum spanning tree of skills"></canvas>
+    <figcaption class="panel-foot">
+      <span class="formula" data-tex="T^{*}=\arg\min_{T}\sum_{(u,v)\in T} w_{uv}"></span>
+      <span class="mute" data-i18n="hero.hint">hover a node · your cursor is a node too</span>
+    </figcaption>
+  </figure>
+</section>
+
+<!-- ───────── about ───────── -->
+<section id="about" class="section">
+  <h2><span class="mute">01 /</span> <span data-i18n="about.title">cat about.md</span></h2>
+  <div class="grid-2">
+    <div class="panel prose">
+      <p data-i18n="about.p1">Computer Science student, majoring in Data Science &amp; AI. I like problems where the right abstraction does most of the work — a metric that turns correlations into distances, a split that stops leakage, a calculator that keeps an LLM away from arithmetic.</p>
+      <p data-i18n="about.p2">Outside the model zoo: competitive programming (ICPC), quant finance, history and philosophy. I explain my bugs to a rubber duck. It is in the corner. Say hi.</p>
+    </div>
+    <div class="panel kv">
+      <div><span class="mute">alias</span><span>ghism</span></div>
+      <div><span class="mute">major</span><span>CS · Data Science &amp; AI</span></div>
+      <div><span class="mute" data-i18n="about.focus">focus</span><span>RAG · ML · Graph algorithms</span></div>
+      <div><span class="mute" data-i18n="about.likes">likes</span><span data-i18n="about.likesV">math · finance · history · philosophy</span></div>
+      <div><span class="mute">motto</span><span class="acc">"My life matters."</span></div>
+      <div><span class="mute">status</span><span class="amb blink-dot" data-i18n="about.status">open to opportunities</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── projects ───────── -->
+<section id="projects" class="section">
+  <h2><span class="mute">02 /</span> <span data-i18n="proj.title">ls ./projects</span></h2>
+
+  <article class="proj panel">
+    <header class="proj-head">
+      <span class="sym">$LAWRAG</span>
+      <h3 data-i18n="p1.name">Vietnamese Labor-Law AI Agent</h3>
+      <span class="tag live" data-i18n="tag.active">active · capstone</span>
+    </header>
+    <div class="proj-body">
+      <div>
+        <p data-i18n="p1.desc">A RAG agent for workers and HR: answers labor-law questions with article-level citations, calculates severance, probation pay, unemployment insurance and annual leave with deterministic Python (the LLM only extracts parameters), and drafts legal forms from Jinja2 templates.</p>
+        <ul class="bullets">
+          <li data-i18n="p1.b1">Corpus: Labor Code 2019, Social Insurance, Employment law, decrees &amp; circulars → chunked by article</li>
+          <li data-i18n="p1.b2">Hybrid retrieval: sparse BM25 + dense BGE-M3 on Qdrant</li>
+          <li data-i18n="p1.b3">Design rule: no LLM arithmetic → no hallucinated money</li>
+        </ul>
+        <div class="formula-box"><span class="formula" data-tex="\text{score}(q,d)=\alpha\,\text{BM25}(q,d)+(1-\alpha)\cos(\mathbf{e}_q,\mathbf{e}_d)"></span></div>
+      </div>
+      <div class="metrics">
+        <div class="m"><b>100+</b><span data-i18n="p1.m1">legal documents</span></div>
+        <div class="m"><b>2,041</b><span data-i18n="p1.m2">article-level chunks</span></div>
+        <div class="m"><b>4</b><span data-i18n="p1.m3">exact calculators</span></div>
+        <div class="m pending"><b>eval</b><span data-i18n="p1.m4">benchmark in progress</span></div>
+      </div>
+    </div>
+    <footer class="proj-foot">
+      <span class="stack">BGE-M3 · Qdrant · BM25 · Pydantic · Jinja2</span>
+      <a href="https://github.com/ghism137/AI_Agent_Ho_tro_tra_cuu_va_soan_thao_van_ban_phap_ly_luat_lao_dong" target="_blank" rel="noopener">repo ↗</a>
+    </footer>
+  </article>
+
+  <article class="proj panel">
+    <header class="proj-head">
+      <span class="sym">$FRAUD</span>
+      <h3>IEEE-CIS Fraud Detection</h3>
+      <span class="tag up">AUC-PR 0.504 ▲</span>
+    </header>
+    <div class="proj-body">
+      <div>
+        <p data-i18n="p2.desc">A leakage-proof fraud pipeline on 590k card transactions with only 3.5% fraud. Purged chronological split (14-day gap for chargeback delay), 337 engineered features, 8 models compared, and a threshold chosen by business cost instead of 0.5.</p>
+        <ul class="bullets">
+          <li data-i18n="p2.b1">Velocity features with shift(1).expanding() → a transaction never sees itself</li>
+          <li data-i18n="p2.b2">Correlation grouping 339 → 235 V-features instead of PCA (which destroyed signal)</li>
+          <li data-i18n="p2.b3">SHAP for explanations, dollar-weighted AUC-PR for high-value fraud</li>
+        </ul>
+        <div class="formula-box"><span class="formula" data-tex="t^{*}=\arg\min_{t}\;C_{FP}\cdot FP(t)+C_{FN}\cdot FN(t),\quad C_{FP}=\$5,\;C_{FN}=\$120"></span></div>
+        <img class="fig" src="assets/fraud.png" alt="Cost matrix analysis — optimal threshold 0.365" loading="lazy">
+      </div>
+      <div class="metrics">
+        <div class="m"><b>0.504</b><span data-i18n="p2.m1">AUC-PR (random = 0.035)</span></div>
+        <div class="m"><b>14.3×</b><span data-i18n="p2.m2">lift over random</span></div>
+        <div class="m"><b>0.906</b><span>AUC-ROC</span></div>
+        <div class="m"><b>−$8.9k</b><span data-i18n="p2.m4">cost at t* = 0.365 vs 0.5</span></div>
+      </div>
+    </div>
+    <footer class="proj-foot">
+      <span class="stack">LightGBM · XGBoost · CatBoost · scikit-learn · SHAP · pandas</span>
+      <a href="https://github.com/ghism137/IEEE-Fraud-Detection-with-Machine-Learning" target="_blank" rel="noopener">repo ↗</a>
+    </footer>
+  </article>
+
+  <article class="proj panel">
+    <header class="proj-head">
+      <span class="sym">$MST</span>
+      <h3 data-i18n="p3.name">Stock Clusters via Minimum Spanning Tree</h3>
+      <span class="tag" data-i18n="tag.algo">applied algorithms</span>
+    </header>
+    <div class="proj-body">
+      <div>
+        <p data-i18n="p3.desc">Econophysics à la Mantegna (1999): log returns → Pearson correlations → a real metric → an MST that keeps the N−1 strongest links of the market. Prim and Kruskal (with Union-Find) are written by hand; NetworkX is only used to cross-check.</p>
+        <ul class="bullets">
+          <li data-i18n="p3.b1">Clusters vs. GICS sectors measured by ARI / NMI, k-means as baseline</li>
+          <li data-i18n="p3.b2">Permutation test: is the tree real structure or noise?</li>
+          <li data-i18n="p3.b3">Rolling MST + Random Matrix Theory to watch correlation breakdown in 2020 and 2022</li>
+        </ul>
+        <div class="formula-box"><span class="formula" data-tex="d_{ij}=\sqrt{2(1-\rho_{ij})}\;\Rightarrow\;\min\sum_{(i,j)\in T} d_{ij}\iff\max\sum_{(i,j)\in T}\rho_{ij}"></span></div>
+        <img class="fig" src="assets/mst.png" alt="MST of stocks colored by sector" loading="lazy">
+      </div>
+      <div class="metrics">
+        <div class="m"><b>N−1</b><span data-i18n="p3.m1">edges kept from N(N−1)/2</span></div>
+        <div class="m"><b>O(N²)</b><span data-i18n="p3.m2">Prim on a dense graph</span></div>
+        <div class="m"><b>ARI/NMI</b><span data-i18n="p3.m3">vs. real sectors</span></div>
+        <div class="m"><b>p-value</b><span data-i18n="p3.m4">permutation test</span></div>
+      </div>
+    </div>
+    <footer class="proj-foot">
+      <span class="stack">NumPy · pandas · NetworkX · Matplotlib · Markowitz</span>
+      <a href="https://github.com/ghism137/Stock-Correlation-Detection-via-Minimum-Spanning-Tree-MST-" target="_blank" rel="noopener">repo ↗</a>
+    </footer>
+  </article>
+
+  <article class="proj panel">
+    <header class="proj-head">
+      <span class="sym">$SAR</span>
+      <h3 data-i18n="p4.name">Oil Spill SAR Segmentation</h3>
+      <span class="tag" data-i18n="tag.team">team · deep learning</span>
+    </header>
+    <div class="proj-body">
+      <div>
+        <p data-i18n="p4.desc">Finding oil slicks on the sea surface in radar (SAR) images. Three segmentation models trained under one shared interface, combined by averaging probability maps, and served in a Streamlit app: upload → pick a model → mask and overlay.</p>
+        <ul class="bullets">
+          <li data-i18n="p4.b1">Unified load_model / predict API so any model plugs into the app</li>
+          <li data-i18n="p4.b2">Ensemble by average probability or 2-of-3 majority vote</li>
+          <li data-i18n="p4.b3">Same metrics for every model: Dice, IoU, Precision, Recall</li>
+        </ul>
+        <div class="formula-box"><span class="formula" data-tex="\text{Dice}=\frac{2|P\cap G|}{|P|+|G|},\qquad \hat{p}=\tfrac{1}{3}\textstyle\sum_{k=1}^{3}p_k"></span></div>
+      </div>
+      <div class="metrics">
+        <div class="m"><b>3</b><span data-i18n="p4.m1">models + ensemble</span></div>
+        <div class="m"><b>Dice/IoU</b><span data-i18n="p4.m2">evaluation</span></div>
+        <div class="m"><b>app</b><span>Streamlit demo</span></div>
+      </div>
+    </div>
+    <footer class="proj-foot">
+      <span class="stack">PyTorch · Streamlit · OpenCV · NumPy</span>
+      <a href="https://github.com/ghism137/oil-spill-sar-segmentation" target="_blank" rel="noopener">repo ↗</a>
+    </footer>
+  </article>
+</section>
+
+<!-- ───────── skills ───────── -->
+<section id="skills" class="section">
+  <h2><span class="mute">03 /</span> <span data-i18n="skills.title">pip list --user</span></h2>
+  <div class="skills">
+    <div class="panel"><h4>languages</h4><p>Python · C++ · Java · SQL · LaTeX · HTML/CSS</p></div>
+    <div class="panel"><h4>ml / dl</h4><p>PyTorch · scikit-learn · LightGBM · XGBoost · CatBoost · SHAP</p></div>
+    <div class="panel"><h4>llm / rag</h4><p>LangChain · BGE-M3 · Qdrant · BM25 · ReAct agents · Pydantic</p></div>
+    <div class="panel"><h4>data</h4><p>pandas · NumPy · Matplotlib · Seaborn · NetworkX</p></div>
+    <div class="panel"><h4>algorithms</h4><p data-i18n="skills.algo">graphs · MST · DP · competitive programming</p></div>
+    <div class="panel"><h4>tools / cloud</h4><p>Git · Linux · Colab · Kaggle · Streamlit · AWS</p></div>
+  </div>
+</section>
+
+<!-- ───────── achievements log ───────── -->
+<section id="log" class="section">
+  <h2><span class="mute">04 /</span> <span data-i18n="log.title">tail -f achievements.log</span></h2>
+  <div class="panel award">
+    <span class="medal">🥉</span>
+    <div>
+      <b data-i18n="log.icpc">Third Prize — ICPC Northern Vietnam</b>
+      <p class="mute" data-i18n="log.icpcSub">International Collegiate Programming Contest, Northern region</p>
+    </div>
+  </div>
+  <div class="panel table-wrap">
+    <table class="log">
+      <thead><tr><th data-i18n="log.date">date</th><th data-i18n="log.issuer">issuer</th><th data-i18n="log.course">coursera certificate</th></tr></thead>
+      <tbody>
+        <tr><td>2026-02</td><td>AWS</td><td>Architecting Solutions on AWS</td></tr>
+        <tr><td>2026-01</td><td>AWS</td><td>AWS Cloud Technical Essentials</td></tr>
+        <tr><td>2025-12</td><td>IBM</td><td>Introduction to Cloud Computing</td></tr>
+        <tr><td>2025-05</td><td>IBM</td><td>Java Programming for Beginners</td></tr>
+        <tr><td>2025-05</td><td>IBM</td><td>Introduction to Software Engineering</td></tr>
+        <tr><td>2025-04</td><td>Google</td><td>The Bits and Bytes of Computer Networking</td></tr>
+        <tr><td>2025-02</td><td>Arizona State Univ.</td><td>English Communication for Tech Professionals</td></tr>
+        <tr><td>2024-10</td><td>Univ. of Colorado System</td><td>TCP/IP and Advanced Topics</td></tr>
+        <tr><td>2024-09</td><td>Meta</td><td>Introduction to Front-End Development</td></tr>
+        <tr><td>2024-09</td><td>NIIT</td><td>Developing Responsive Web Pages Using HTML5 and CSS3</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ───────── contact ───────── -->
+<section id="contact" class="section">
+  <h2><span class="mute">05 /</span> <span data-i18n="contact.title">./contact --now</span></h2>
+  <div class="panel term">
+    <p><span class="mute">$</span> echo $EMAIL</p>
+    <p class="row"><a href="mailto:tranthaihung137@gmail.com">tranthaihung137@gmail.com</a><button class="chip copy" data-copy="tranthaihung137@gmail.com">copy</button></p>
+    <p class="row"><a href="mailto:sktelfins137@gmail.com">sktelfins137@gmail.com</a><button class="chip copy" data-copy="sktelfins137@gmail.com">copy</button></p>
+    <p><span class="mute">$</span> open github</p>
+    <p><a href="https://github.com/ghism137" target="_blank" rel="noopener">github.com/ghism137 ↗</a></p>
+    <p class="mute" data-i18n="contact.note"># replies faster than my models converge</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <span>© 2026 ghism · <span data-i18n="foot.made">hand-written HTML/CSS/JS, no frameworks were harmed</span></span>
+  <span class="mute">loss.backward() — life.forward()</span>
+</footer>
+
+<!-- ───────── the duck ───────── -->
+<button class="duck" id="duck" aria-label="Rubber duck">
+  <svg viewBox="-14 -12 28 22" width="56" height="44" aria-hidden="true">
+    <path d="M-8 1 L-12 -3 L-7 4 Z" fill="#F5C518" stroke="#C99700" stroke-width=".6"/>
+    <ellipse cx="-1" cy="3" rx="7.5" ry="5.2" fill="#FFD43B" stroke="#C99700" stroke-width=".6"/>
+    <ellipse cx="-2.5" cy="3" rx="3.8" ry="2.3" fill="#F5C518"/>
+    <circle cx="4.5" cy="-4" r="4.3" fill="#FFD43B" stroke="#C99700" stroke-width=".6"/>
+    <path d="M8.2 -5 L12.8 -3.6 L8.2 -1.8 Z" fill="#FF8C1A"/>
+    <circle cx="5.6" cy="-5" r="1" fill="#1f2328"/>
+  </svg>
+</button>
+<div class="bubble" id="bubble" role="status"></div>
+
+<script defer src="vendor/katex/katex.min.js"></script>
+<script defer src="script.js"></script>
+</body>
+</html>
